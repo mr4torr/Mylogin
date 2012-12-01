@@ -1,6 +1,5 @@
--------------------------------------------------- -
-| Mylogin é um plugin de autenticação simples para cakephp 2.0.x |
- -------------------------------------------------- -
+MYLOGIN é um plugin de autenticação simples para cakephp 2.0.x |
+---------------------------------------------------
 
 E isso é feito usando o novo cakephp 2.0.x AuthComponent
 
@@ -23,7 +22,7 @@ yourapp/app/Plugin/Mylogin/config/Schema/dump.sql
 
 3. Configure o componente em sua classe AppController
 
-        Seu yourapp/app/Controller/AppController.php deve ficar assim:
+Seu yourapp/app/Controller/AppController.php deve ficar assim:
 
         <?php
         classe AppController Controller extends {
@@ -39,11 +38,9 @@ yourapp/app/Plugin/Mylogin/config/Schema/dump.sql
         
         ...
 
-4. Ativar Plugin em seu bootstrap.php
+4. Ativar Plugin em seu yourapp/app/config/bootstrap.php deve incluir esta linha
+Carrega plugins Usermin e aplicar rotas plugin. Mantenha todos os outros plugins que você está usando aqui
 
-        yourapp/app/config/bootstrap.php deve incluir esta linha
-
-        / / Carrega plugins Usermin e aplicar rotas plugin. Mantenha todos os outros plugins que você está usando aqui
         CakePlugin::loadall(array (
             'Mylogin' => array ('router' => true),
         ));
@@ -59,21 +56,28 @@ yourapp/app/Plugin/Mylogin/config/Schema/dump.sql
 Tudo pronto!
 
 
-#link do router
+LINK DO ROUTER
+----------------
 
 * yourapp/login //-- fazer login
 
 * yourapp/register //-- registrar
--- se for um sistema interno aonde só o administrador pode cadastrar retire "register" na function beforeFilter do arquivo
-yourapp/app/Plugin/Mylogin/Controller/UsersController.php
-		$this->Auth->allow('login', 'logout', 'register', 'forgotten_password', 'change_password');
-		POR
-        $this->Auth->allow('login', 'logout', 'forgotten_password', 'change_password');
+se for um sistema interno aonde só o administrador pode cadastrar retire "register" na function beforeFilter do arquivo yourapp/app/Plugin/Mylogin/Controller/UsersController.php
+	
+	$this->Auth->allow('login', 'logout', 'register', 'forgotten_password', 'change_password');
+
+POR
+
+    $this->Auth->allow('login', 'logout', 'forgotten_password', 'change_password');
 
 
 * yourapp/logout //-- sair do sistema
-link para logout <?= $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout', 'plugin' => 'mylogin')) ?> ou
-<?= $this->Html->link('Sair', '/logout') ?>
+link para logout 
+
+	<?= $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout', 'plugin' => 'mylogin')) ?>
+OU
+
+	<?= $this->Html->link('Sair', '/logout') ?>
 
 * yourapp/forgotten_password //-- esqueci a senha
 

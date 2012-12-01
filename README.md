@@ -12,17 +12,14 @@ INSTALAÇÃO
 ------------
 
 1. Baixe a versão mais recente ou utilizar git para manter o plugin atualizado
-
-cd yourapp/app/Plugin
-git clone git://github.com/mailontorres/Mylogin.git Mylogin
+	cd yourapp/app/Plugin
+	git clone git://github.com/mailontorres/Mylogin.git Mylogin
 
 2. Importação do banco (use sua ferramenta favorita sql para importar o banco)
-
-yourapp/app/Plugin/Mylogin/config/Schema/dump.sql
+	yourapp/app/Plugin/Mylogin/config/Schema/dump.sql
 
 3. Configure o componente em sua classe AppController
-
-Seu yourapp/app/Controller/AppController.php deve ficar assim:
+	Seu yourapp/app/Controller/AppController.php deve ficar assim:
 
         <?php
         classe AppController Controller extends {
@@ -41,9 +38,13 @@ Seu yourapp/app/Controller/AppController.php deve ficar assim:
 4. Ativar Plugin em seu yourapp/app/config/bootstrap.php deve incluir esta linha
 Carrega plugins Usermin e aplicar rotas plugin. Mantenha todos os outros plugins que você está usando aqui
 
-        CakePlugin::loadall(array (
-            'Mylogin' => array ('router' => true),
+ <?php
+ 	...
+	CakePlugin::loadall(array(
+            'Mylogin' => array('router' => true),
         ));
+        ...
+
 
 5. Ajustar a configuração do envio de e-mail
 	yourapp/app/config/email.php
@@ -62,7 +63,7 @@ LINK DO ROUTER
 * yourapp/login //-- fazer login
 
 * yourapp/register //-- registrar
-se for um sistema interno aonde só o administrador pode cadastrar retire "register" na function beforeFilter do arquivo yourapp/app/Plugin/Mylogin/Controller/UsersController.php
+Se for um sistema interno aonde só o administrador pode cadastrar retire "register" na function beforeFilter do arquivo yourapp/app/Plugin/Mylogin/Controller/UsersController.php
 
     $this->Auth->allow('login', 'logout', 'register', 'forgotten_password', 'change_password');
 
@@ -72,13 +73,13 @@ POR
 
 
 * yourapp/logout //-- sair do sistema
-link para logout 
+Link para logout 
 
-    <?php echo $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout', 'plugin' => 'mylogin')) ?>
+    echo $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout', 'plugin' => 'mylogin'));
     
 OU
 
-    <?php echo  $this->Html->link('Sair', '/logout') ?>
+    echo $this->Html->link('Sair', '/logout');
 
 
 * yourapp/forgotten_password //-- esqueci a senha

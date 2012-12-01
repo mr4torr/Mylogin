@@ -50,7 +50,7 @@ Carrega plugins Usermin e aplicar rotas plugin. Mantenha todos os outros plugins
 
 
 6. Criar um usuário e senha padrão
-		http://localhost/seuapp/register
+	http://localhost/seuapp/register
 
 
 Tudo pronto!
@@ -63,8 +63,8 @@ LINK DO ROUTER
 
 * yourapp/register //-- registrar
 se for um sistema interno aonde só o administrador pode cadastrar retire "register" na function beforeFilter do arquivo yourapp/app/Plugin/Mylogin/Controller/UsersController.php
-	
-	$this->Auth->allow('login', 'logout', 'register', 'forgotten_password', 'change_password');
+
+    $this->Auth->allow('login', 'logout', 'register', 'forgotten_password', 'change_password');
 
 POR
 
@@ -74,10 +74,12 @@ POR
 * yourapp/logout //-- sair do sistema
 link para logout 
 
-	<?= $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout', 'plugin' => 'mylogin')) ?>
+    <?php echo $this->Html->link('Sair', array('controller' => 'users', 'action' => 'logout', 'plugin' => 'mylogin')) ?>
+    
 OU
 
-	<?= $this->Html->link('Sair', '/logout') ?>
+    <?php echo  $this->Html->link('Sair', '/logout') ?>
+
 
 * yourapp/forgotten_password //-- esqueci a senha
 
